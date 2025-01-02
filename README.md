@@ -34,3 +34,17 @@ Frontend API Configuration: Check that the API base URL in your frontend code ma
 CORS: If testing frontend with a browser, ensure that Cross-Origin Resource Sharing (CORS) is enabled on your backend.
 
 Error Handling: Validate proper error messages and handling both in Postman and on the frontend for failed operations.
+
+## Description
+A comprehensive Banking Management System built using Spring Boot, REST APIs, and SQL. The project automates banking operations like account management, transaction processing, and loan handling.
+
+## Features
+- Customer Account Management
+- Transaction History
+- Loan Applications and Tracking
+- Secure RESTful APIs
+
+## Technologies
+- Java, Spring Boot, Hibernate
+- SQL Database
+- HTML, CSS, JavaScript for Frontend
