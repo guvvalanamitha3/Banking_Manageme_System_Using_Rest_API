@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile to Mobile Transaction</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #58b7d7, #afbaec);
+            color: #333;
+        }
+
+        #container {
+            height: auto;
+            width: 400px;
+            background: linear-gradient(135deg, #5896e1, #98d8e3);
+            border-radius: 20px;
+            box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.5),
+                        5px 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h2 {
+            font-size: 25px;
+            margin-bottom: 20px;
+            color: blue;
+            text-shadow: -2px 2px 2px black;
+            text-align: center;
+        }
+
+        input {
+            height: 45px;
+            width: 300px;
+            border: none;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 15px;
+            background: #ffffff;
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1),
+                        inset -2px -2px 5px rgba(255, 255, 255, 0.7);
+            transition: 0.3s;
+        }
+
+        
+        button {
+            height: 50px;
+            width: 150px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #007c91, #00ced1);
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 2px 2px 15px rgba(0, 124, 145, 0.3),
+                        -2px -2px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #b7eff0, #4ad4ed);
+            box-shadow: 0 0 20px rgba(0, 124, 145, 0.6);
+        }
+
+        
+    </style>
+</head>
+<body>
+    <center>
+        <h2>MOBILE TO MOBILE TRANSACTION</h2>
+        <div id="container">
+            <div>
+                <input type="text" placeholder="Enter Sender Mobile Number" required id="sender" >
+                <br>
+                <input type="text" placeholder="Enter Receiver Mobile Number" required id="receiver" >
+                <br>
+                <input type="text" placeholder="Enter Amount To be Transferred" required id="amount">
+                <br>
+                <button id="submit" onclick="mobileToMobile()">Submit</button>
+            </div>
+        </div>
+        <script>
+
+
+
+           async function mobileToMobile() {
+         const sender = document.getElementById("sender").value.trim();
+         const receiver = document.getElementById("receiver").value.trim();
+         const amount=document.getElementById("amount").value.trim();
+
+    // Validate input
+    if (!sender || !receiver || isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid mobile number and amount.");
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:1919/mobiletomobile/${sender}/${receiver}/${amount}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        
+            const responseData = await response.json();
+            if(responseData.httpstatuscode===200){
+                alert(responseData.responsemsg);
+            }else{
+                alert(responseData.responsemsg)
+            }
+        
+    } catch (error) {
+        console.error("Network Error:", error);
+        alert("A network error occurred. Please try again later.");
+    }
+}
+ </script>
+    </center>
+</body>
+</html>

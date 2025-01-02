@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body
+        {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url(../Images/check.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        #container
+        {
+            height: 300px;
+            width: 400px;
+            background-color: transparent;
+            border-radius: 20px;
+            box-shadow: -5px -5px 2px rgb(94, 206, 212);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .number
+        {
+            height: 50px;
+            width: 250px;
+            border:2px solid transparent;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 20px;
+        }
+        #submit
+        {
+            height: 50px;
+            width: 100px;
+            border:2px solid transparent;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 20px;
+        }
+        h2
+        {
+            font-size: 50px;
+            color: aqua;
+           
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h2>CHECK BALANCE</h2>
+        <div id="container">
+            <div>
+
+                <input placeholder="Enter Account Number" required id="number" class="number">
+                <br><br>
+                <button id="submit" onclick="checkBalance()">submit</button>
+            </div>
+        </div>
+        <script>
+            async function checkBalance() {
+                // Get the account number from the input field
+                const accountNumber = document.getElementById("number").value.trim();
+    
+                // Validate if the input is not empty
+                if (!accountNumber) {
+                    alert("Please enter your account number.");
+                    return;
+                }
+                try {
+                    const response = await fetch(`http://localhost:1919/checkbalance/${accountNumber}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+                    
+                        //console.log("Response Data:", mydata); -->
+                        if (response.ok) {
+                            const mydata=await response.json();
+                            console.log("Your balance is" + mydata.data);
+                            alert("Your balance is:"+mydata.data);
+                        } else {
+                            alert("Failed to check balance.");
+                            alert(mydata.respnsemsg);
+                        }
+                    } catch (error) {
+                    console.error("Error:", error);
+                    alert("An error occurred while processing your request.");
+                }
+            }
+        </script>
+    </center>
+</body>
+</html>

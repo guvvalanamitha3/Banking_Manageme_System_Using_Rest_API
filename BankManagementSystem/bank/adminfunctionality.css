@@ -1,0 +1,29 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body
+{
+    background-color: gray;
+}
+#container
+{
+    height:200px;
+    width:400px;
+    border: 2px solid black;
+    box-shadow: -2px 2px 2px black;
+    border-radius: 10px;
+    /* margin-top: 10px; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+#button
+{
+    height:50px;
+    width:100px;
+    border: 2px solid black;
+    box-shadow: -2px 2px 2px black;
+    border-radius: 10px;
+}

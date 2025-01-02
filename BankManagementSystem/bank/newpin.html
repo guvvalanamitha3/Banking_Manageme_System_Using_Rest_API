@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Pin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6de890, #2c3e50); /* Smooth gradient background */
+            background-size: cover;
+            background-position: center;
+        }
+
+        #container {
+            width: 350px;
+            padding: 40px 30px;
+            background: linear-gradient(145deg,green); /* Gradient background for container */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            backdrop-filter: blur(10px); /* Elegant blur effect */
+        }
+
+        h2 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            outline: none;
+            background-color: #fff;
+            transition: 0.3s;
+            color: #333;
+        }
+
+        input:focus {
+            border-color: #ff69b4;
+            box-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
+            background-color: #fdfdfd;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(135deg, #2c3e50, #8e44ad); /* Gradient background for button */
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #8e44ad, #2c3e50);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        button:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        @media (max-width: 400px) {
+            #container {
+                width: 90%;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>Change Pin</h2>
+        <input type="text" id="accountnumber" placeholder="Enter Account Number" required>
+        <input type="number" id="newpin" placeholder="Enter New Pin (4 digits)" required>
+        <button onclick="changepin()">Submit</button>
+    </div>
+
+    <script>
+        async function changepin() {
+            const accountnumber = document.getElementById("accountnumber").value.trim();
+            const newpin = document.getElementById("newpin").value.trim();
+
+            if (!accountnumber || isNaN(newpin) || newpin.length !== 4) {
+                alert("Please enter a valid account number and a 4-digit PIN.");
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:1919/changepin/${accountnumber}/${newpin}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                });
+
+                const responseData = await response.json();
+                if (responseData.httpstatuscode === 200) {
+                    alert(responseData.responsemsg);
+                } else {
+                    alert(responseData.responsemsg);
+                }
+            } catch (error) {
+                console.error("Network Error:", error);
+                alert("A network error occurred. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

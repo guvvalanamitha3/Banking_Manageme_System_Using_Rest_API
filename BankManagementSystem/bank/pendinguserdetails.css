@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+.container {
+    margin: 40px auto;
+    max-width: 900px;
+    padding: 20px;
+    background-color:  darkred;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* h1 {
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 20px;
+} */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 14px;
+}
+td
+{
+    color: white;
+    font-size: 20px;
+}
+th {
+    background-color: #2c3e50;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+/* tr:hover {
+    background-color: gray;
+    transition: background-color 0.3s ease;
+} */
+
+/* Button Styles */
+.action-btn {
+    padding: 8px 16px;
+    margin: 4px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.accept-btn {
+    background-color: #28a745;
+    box-shadow: 0 2px 6px rgba(40, 167, 69, 0.4);
+}
+
+.reject-btn {
+    background-color: #dc3545;
+    box-shadow: 0 2px 6px rgba(220, 53, 69, 0.4);
+}
+
+.action-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
